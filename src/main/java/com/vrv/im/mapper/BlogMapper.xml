@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vrv.im.mapper.BlogMapper">
+    <cache type="org.mybatis.caches.memcached.MemcachedCache" />
+	<select id="selectBlog" parameterType="int" resultType="Blog">
+		select * from IM_BLOG where id = #{id}
+	</select>
+	<select id="selectBlogName" parameterType="Blog" resultType="String">
+		select id,name from IM_BLOG where id = #{id} and  testid=#{testid}
+	</select>	
+    <select id="selectBlogByMap" parameterType="map" resultType="map">
+		select id,name,addr from IM_BLOG where testid=#{testid}
+	</select>
+	<select id="selectBlogByObj" parameterType="Blog" resultType="Blog">
+		select * from IM_BLOG where id = #{id}
+	</select>
+	
+	<insert id="insertBlogByObj" parameterType="Blog">
+	  <![CDATA[
+	    INSERT INTO IM_BLOG 
+	      (id,testid,name,addr)
+	    VALUES
+	      (#{id},#{testid},#{name},#{addr})
+	    ]]>    
+  	</insert>  
+  	<insert id="insertBlogByMap" parameterType="map">
+	  <![CDATA[
+	    INSERT INTO IM_BLOG 
+	      (id,testid,name,addr)
+	    VALUES
+	      (#{id},#{testid},#{name},#{addr})
+	    ]]>    
+  	</insert> 
+  	<update id="updateBlogByObj" parameterType="Blog">
+	  <![CDATA[
+	    UPDATE IM_BLOG  SET name=#{name},addr=#{addr}
+	       where id = #{id} and  testid=#{testid}
+	    ]]>    
+  	</update>   	
+</mapper>
