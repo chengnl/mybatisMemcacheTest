@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from IM_BLOG where id = #{id}
 	</select>
 	<select id="selectBlogName" parameterType="Blog" resultType="String">
-		select id,name from IM_BLOG where id = #{id} and  testid=#{testid}
+		select addr from IM_BLOG where id = #{id} and  testid=#{testid}
 	</select>	
     <select id="selectBlogByMap" parameterType="map" resultType="map">
 		select id,name,addr from IM_BLOG where testid=#{testid}
